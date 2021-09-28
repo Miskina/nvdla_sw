@@ -6,3 +6,5 @@
 *.mod.c
 .*.cmd
 .*.swp
+Documentation/doxygen
+.vscode
