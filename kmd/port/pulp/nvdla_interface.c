@@ -79,7 +79,6 @@ void dla_debug(const char* str, ...)
 #endif
 }
 
-
 void dla_info(const char* str, ...)
 {
 #if DLA_LOG_LVL <= DLA_LOG_LVL_INFO
@@ -101,10 +100,10 @@ void dla_error(const char* str, ...)
 
 void* dla_memset(void* src, int ch, uint64_t len)
 {
-	return NULL;
+	return memset(src, ch, len);
 }
 
 void* dla_memcpy(void* dest, const void* src, uint64_t len)
 {
-	return 0;
+	return memcpy(dest, src, len);
 }
