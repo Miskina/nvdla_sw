@@ -200,6 +200,18 @@ static int32_t dla_read_cpu_address(void *driver_context, void *task_data,
 	return 0;
 }
 
+/**
+ *	Gets the actual address given by the 'dst' pointer.
+ *  The address can be a stack or heap address which can be fetched
+ *  by the CPU or it can be some other, NVDLA specific memory.
+ *  This implementation uses the Linux DRM (Direct Render Manager),
+ *  which is a subsystem of the Linux kernel used for interfacing with
+ *  GPUs/video cards. Here it is used to reference NVDLA specific memory
+ *  using one of its memory managers, specifically GEM (Graphics Execution Manager).
+ *  The fetched address is added to a nvdla_task's address list.
+ *  The 'destination' parameter specifies from where the address is read, i.e.
+ *  if the address is of the primary or secondary memory.
+ */
 int32_t dla_get_dma_address(void *driver_context, void *task_data,
 					int16_t index, void *dst_ptr,
 					uint32_t destination)
