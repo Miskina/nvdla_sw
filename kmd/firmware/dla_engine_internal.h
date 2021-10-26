@@ -144,12 +144,12 @@ dla_op_completion(struct dla_processor *processor,
 
 int32_t
 dla_read_lut(struct dla_engine *engine, int16_t index, void *dst);
-int
-dla_enable_intr(uint32_t mask);
-int
-dla_disable_intr(uint32_t mask);
-int
-utils_get_free_group(struct dla_processor *processor,
+
+int32_t dla_enable_intr(uint32_t mask);
+
+int32_t dla_disable_intr(uint32_t mask);
+
+int utils_get_free_group(struct dla_processor *processor,
 			uint8_t *group_id,
 			uint8_t *rdma_id);
 int32_t

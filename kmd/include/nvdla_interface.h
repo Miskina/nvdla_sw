@@ -32,6 +32,8 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#define NULL 0
+
 /**
  * @brief			Register driver to firmware
  *

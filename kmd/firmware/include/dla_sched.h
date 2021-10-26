@@ -54,7 +54,7 @@ struct dla_task {
 	uint64_t surface_addr;
 	/* start address of a list of dla_stat_container */
 	uint64_t stat_data_addr;
-} __packed __aligned(256);
+} __attribute__((packed, aligned(256)));
 
 /**
  * @brief			Configuration parameters supported by the engine
