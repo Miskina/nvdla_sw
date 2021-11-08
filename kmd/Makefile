@@ -24,10 +24,18 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-KDIR ?= /lib/modules/`uname -r`/build
+# KDIR ?= /lib/modules/`uname -r`/build
+#
+# .PHONY: default
+# default: modules
+#
+# %:
+# 	$(MAKE) -C $(KDIR) M=$$PWD $@
 
-.PHONY: default
-default: modules
+
 
 %:
-	$(MAKE) -C $(KDIR) M=$$PWD $@
+	$(MAKE) -C port/$@
+
+clean_%:
+	$(MAKE) -C port/$@ clean
