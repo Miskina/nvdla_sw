@@ -7,6 +7,7 @@
 
 #include <pulp.h>
 #include <stdio.h>
+#include <stdarg.h>
 #include <nvdla_interface.h>
 
 #define NVDLA_ADDR_BASE ARCHI_FC_HWPE_ADDR
@@ -29,12 +30,14 @@
 #endif
 
 #define _FPRINTF_VARGS_HELPER(_s, _stream)  \
-	do {							  		\
+	do                                      \
+    {										\
 		va_list _args;		  		  		\
 		va_start(_args, _s);    	  		\
 		vfprintf(_stream, _s, _args); 		\
 		va_end(_args);				  		\
-	while(0)						  		\
+	} while(0)						  		\
+
 
 uint32_t dla_reg_read(void* driver_context, uint32_t addr)
 {
@@ -55,7 +58,7 @@ int32_t dla_data_read(void* driver_context, void* task_data,
 
 int32_t dla_data_write(void* driver_context, void* task_data,
 				void* src, uint64_t dst,
-				utin32_t size, uint64_t offset)
+				uint32_t size, uint64_t offset)
 {
 	return 0;
 }
