@@ -29,6 +29,8 @@
 	#define DLA_LOG_LVL 0
 #endif
 
+extern int vfprintf(FILE* F, const char* format, va_list vargs);
+
 #define _FPRINTF_VARGS_HELPER(_s, _stream)  \
 	do                                      \
     {										\
