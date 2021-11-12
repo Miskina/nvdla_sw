@@ -64,10 +64,10 @@ struct dla_processor {
 	struct dla_processor_group groups[DLA_NUM_GROUPS];
 	union dla_stat_container *stat_data_desc;
 
-	int32_t (*is_ready)(struct dla_processor *processor,
+	int (*is_ready)(struct dla_processor *processor,
 				  struct dla_processor_group *group);
-	int32_t (*enable)(struct dla_processor_group *group);
-	int32_t (*program)(struct dla_processor_group *group);
+	int (*enable)(struct dla_processor_group *group);
+	int (*program)(struct dla_processor_group *group);
 	void (*set_producer)(int32_t group_id, int32_t rdma_id);
 	void (*dump_config)(struct dla_processor_group *group);
 	void (*rdma_check)(struct dla_processor_group *group);
