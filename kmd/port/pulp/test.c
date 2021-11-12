@@ -1,5 +1,6 @@
 
 #include "nvdla_interface.h"
+#include "dla_engine.h"
 
 
 int main()
