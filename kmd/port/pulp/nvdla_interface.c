@@ -2,6 +2,7 @@
  * Authors:
  *  - Luka Macan <luka.macan@fer.hr>
  *  - Mihael Kovac <mihael.kovac@fer.hr>
+ *  - Andrija dukic <andrija.dukic@fer.hr>
  *
  */
 
@@ -26,7 +27,7 @@
 #define DLA_LOG_LVL_ERROR 3
 
 #ifndef DLA_LOG_LVL
-	#define DLA_LOG_LVL 0
+	#define DLA_LOG_LVL 3
 #endif
 
 extern int vfprintf(FILE* F, const char* format, va_list vargs);
