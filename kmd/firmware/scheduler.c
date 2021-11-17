@@ -37,7 +37,7 @@
 
 #define MAX_NUM_ADDRESSES	256
 
-static uint64_t roi_array_length __aligned(8);
+static uint64_t roi_array_length __attribute__((aligned(8)));
 static struct dla_network_desc network;
 
 static int
@@ -1029,8 +1029,7 @@ exit:
 	RETURN(ret);
 }
 
-int
-dla_process_events(void *engine_context, uint32_t *task_complete)
+int32_t dla_process_events(void *engine_context, uint32_t *task_complete)
 {
 	int32_t i;
 	int32_t ret = 0;
@@ -1063,8 +1062,7 @@ dla_process_events(void *engine_context, uint32_t *task_complete)
  * 2. Initiate processors with head of list for same op
  * 3. Start processing events received
  */
-int
-dla_execute_task(void *engine_context, void *task_data, void *config_data)
+int32_t dla_execute_task(void *engine_context, void *task_data, void *config_data)
 {
 	int32_t ret;
 	struct dla_engine *engine = (struct dla_engine *)engine_context;

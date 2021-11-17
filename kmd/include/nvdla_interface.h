@@ -32,6 +32,10 @@
 #include <stdint.h>
 #include <stdbool.h>
 
+#ifndef NULL
+  #define NULL 0
+#endif
+
 /**
  * @brief			Register driver to firmware
  *

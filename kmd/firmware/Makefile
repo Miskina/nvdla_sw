@@ -24,6 +24,9 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+USE_LINUX_KERNEL ?= 0
+
+ifeq (1, $(USE_LINUX_KERNEL))
 ccflags-y += -I$(src)/../../firmware/include
 ccflags-y += -I$(src)/../../firmware
 
@@ -40,3 +43,21 @@ opendla-y += ../../firmware/common.o
 opendla-y += ../../firmware/engine_data.o
 opendla-y += ../../firmware/engine_isr.o
 opendla-y += ../../firmware/engine_debug.o
+else
+
+CFLAGS += -MMD
+CFLAGS += -Iinclude
+
+build/%.o: %.c
+	$(CC) $(CFLAGS) $< -o $@
+
+SRCS:=$(wildcard *.c)
+OBJS:=$(SRCS:%.c=build/%.o)
+-include $(OBJS:%.o=%.d)
+
+all: $(OBJS)
+
+clean:
+	rm -rf build
+
+endif

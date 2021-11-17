@@ -30,6 +30,7 @@
 # (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 # OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+
 obj-m += opendla.o
 
 ccflags-y += -I$(src)/include
@@ -40,3 +41,11 @@ include $(src)/../../firmware/Makefile
 
 opendla-y += nvdla_core_callbacks.o
 opendla-y += nvdla_gem.o
+
+KDIR ?= /lib/modules/`uname -r`/build
+
+.PHONY: default
+default: modules
+
+%:
+	$(MAKE) -C $(KDIR) M=$$PWD $@
