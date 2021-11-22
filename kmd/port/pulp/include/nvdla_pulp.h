@@ -3,18 +3,19 @@
 
 #include <stdint.h>
 
+
 /**
  * @brief			Task information submitted from user space
  *
  * num_addresses		Number of addresses in address list
  * address_list			Address list
- * nvdla_dev			Pointer to NVDLA device
- * file				DRM file instance
+ *
+ * The task data you will recieve in the portability layer functions (dla_get_dma_address, etc.)
  */
-struct nvdla_task {
-	uint32_t num_addresses;
-	struct nvdla_mem_handle *address_list;
-	struct nvdla_device *nvdla_dev;
+struct nvdla_task
+{
+    int num_addresses;
+    uint64_t* address_list;
 };
 
 /**
@@ -27,10 +28,17 @@ struct nvdla_task {
  */
 struct nvdla_config
 {
-	uint32_t atom_size;
-	bool bdma_enable;
-	bool rubik_enable;
-	bool weight_compress_support;
+    union
+    {
+        struct
+        {
+            int bdma_enable: 1;
+            int rubik_enable: 1;
+            int weight_compress_support: 1;
+        } __attribute__((packed));
+        uint16_t flags;
+    };
+    uint16_t atom_size;
 };
 
 /**
