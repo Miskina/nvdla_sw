@@ -52,17 +52,42 @@ void dla_reg_write(void* driver_context, uint32_t addr, uint32_t val)
 	NVDLA_WRITE(val, addr);
 }
 
+
+// For some reason, "src" is the index of the address in the "custom" task context's (task_data) address list.
 int32_t dla_data_read(void* driver_context, void* task_data,
 				uint64_t src, void* dst,
 				uint32_t size, uint64_t offset)
 {
+    nvdla_device* device = (nvdla_device*)driver_context;
+    nvdla_task*   task   = (nvdla_task*)task_data;
+
+    if (src >= task->num_addresses)
+    {
+        return -1;
+    }
+    uint64_t address = task->address_list[src];
+
+    memcpy(dst, (void*)(address + offset), size);
+
+
 	return 0;
 }
 
+// For some reason, "src" is the index of the address in the "custom" task context's (task_data) address list.
 int32_t dla_data_write(void* driver_context, void* task_data,
 				void* src, uint64_t dst,
 				uint32_t size, uint64_t offset)
 {
+    nvdla_device* device = (nvdla_device*)driver_context;
+    nvdla_task*   task   = (nvdla_task*)task_data;
+
+    if (dst >= task->num_addresses)
+    {
+        return -1;
+    }
+    uint64_t address = task->address_list[dst];
+
+    memcpy((void*)(address + offset), src, size);
 	return 0;
 }
 
@@ -70,6 +95,7 @@ int32_t dla_get_dma_address(void* driver_context, void* task_data,
 					int16_t index, void* dst_ptr,
 					uint32_t destination)
 {
+
 	return 0;
 }
 
