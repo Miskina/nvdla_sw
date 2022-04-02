@@ -63,12 +63,16 @@ int32_t dla_data_write(void* driver_context, void* task_data,
 	return 0;
 }
 
+#ifdef NVDLA_SECONDARY_MEMIF_ENABLE
+	#error "Fetching from the secondary NVDLA memory interface (SRAMMIF) is curently not implemented"
+#else
 int32_t dla_get_dma_address(void* driver_context, void* task_data,
 					int16_t index, void* dst_ptr,
 					uint32_t destination)
 {
 	return 0;
 }
+#endif
 
 int64_t dla_get_time_us()
 {
